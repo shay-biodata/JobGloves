@@ -1,0 +1,71 @@
+<section class="user">
+
+  <h1><%= @user.name %></h1>
+
+  
+  <ul class="collection">
+      <%if @user.employer %>
+          <%= link_to user_url(:page => 'jobs')	,class:"collection-item" do %>
+            <div class="grid-2-1">
+                <div class="left">
+                  Your Posts
+                </div>
+                <div class="right grid-2-1">
+                    <div>
+                        <%=@user.jobs.count %> Posts
+                    </div>
+                    <div>
+                        .
+                    </div>
+                </div>
+            </div>
+          <%end%>
+      <%end%>
+
+    <%if @user.employer %>
+        <%= link_to user_url(:page => 'applicants')	,class:"collection-item" do %>
+          <div class="grid-2-1">
+              <div class="left">
+                Applicants
+              </div>
+              <div class="right grid-2-1">
+                  <div>
+                      <%=@requests.count %> Applicants
+                  </div>
+                  <div>
+                      .
+                  </div>
+              </div>
+          </div>
+        <%end%>
+    <%end%>
+
+    <%if !@user.employer && current_user?(@user) %>
+      <%= link_to user_url(:page => 'applicants')	,class:"collection-item" do %>
+        <div class="grid-2-1">
+            <div class="left">
+              Your Applications
+            </div>
+            <div class="right grid-2-1">
+                <div>
+                    <%=@requests.count %> Applicants
+                </div>
+                <div>
+                    .
+                </div>
+            </div>
+        </div>
+      <%end%>
+    <%end%>
+    </ul>
+            
+<p><%= @user.email %></p>
+
+<% if current_user?(@user) %>
+
+  <div class="actions">
+    <%= link_to "Edit Account",edit_user_path	,class:"button edit"  %>
+    <%= link_to "Delete Account", @user , method: :delete, data: {confirm: "Permanently delete your account!?"},class:"button delete" %>
+  </div>
+<% end %>
+</section>

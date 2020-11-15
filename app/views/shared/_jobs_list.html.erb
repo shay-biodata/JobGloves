@@ -1,0 +1,29 @@
+<ul class="collapsible">
+    <li>
+            <div class="collapsible-header grid-2-1"> 
+                <div class="left">
+
+                    <%= link_to job, class:"card-title" do %>
+                        <span class="card-title"><%= truncate(job.title,length:60) %></span>
+                    <%end%>
+                </div>
+                <div class="right grid-2-1">
+
+                    <div>
+                        <%= truncate(job.user.name,length:15 )%>
+                        
+                    </div>
+                    
+                    <div>
+                        <%= time_ago_in_words(job.created_at) %> ago
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="collapsible-body">
+                <div><%= job.requests.count%> applicants</div>
+                <span><%= truncate(job.description,length:200)%></span>
+            </div>
+    </li>
+  </ul>

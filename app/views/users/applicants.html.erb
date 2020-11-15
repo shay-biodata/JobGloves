@@ -1,0 +1,36 @@
+<h1>Applicants</h1>
+<div class="row">
+    <% @requests.each do |request| %>
+        
+        <ul class="collapsible">
+            <li>
+                    <div class="collapsible-header grid-2-1"> 
+                        <div class="left">
+                        <%= link_to request.job, class:"card-title" do %>
+                            <span class="card-title"><%= truncate(request.job.title,length:60) %></span>
+                        <%end%>
+                        </div>
+                        <div class="right grid-2-1">
+
+                            <div>
+                            <%= link_to request.user, class:"card-title" do %>
+                                <span class="card-title"><%= request.user.name%></span>
+                            <%end%>
+                            </div>
+                            
+                            <div>
+                                <%= time_ago_in_words(request.created_at) %> ago
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="collapsible-body">
+                        <div>3 applicants</div>
+                        <span>.</span>
+                    </div>
+            </li>
+        </ul>
+
+    <% end %>
+</div>

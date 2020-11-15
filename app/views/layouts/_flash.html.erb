@@ -1,0 +1,13 @@
+<% if flash[:notice]%>
+    <% flash.each do |message_type, message| %>
+        <%= javascript_tag "Materialize.toast('#{message}', 8000)" %>
+    <% end %>
+<% end %>
+
+<%if flash[:alert]%>
+    <% flash.each do |message_type, message| %>
+        <%= javascript_tag "Materialize.toast('#{message}', 8000)" %>
+    <% end %>
+<%end%>
+
+

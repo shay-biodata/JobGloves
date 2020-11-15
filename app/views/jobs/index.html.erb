@@ -1,0 +1,16 @@
+
+<h1 class="center-align big-title">Job Gloves<i class="large material-icons">thumbs_up_down</i></h1>
+
+<% if current_user_employer? %>
+    <%= link_to new_job_path,class:"btn-floating btn-large waves-effect waves-light " do %>
+        <i class="material-icons">add</i>
+    <% end %>
+<% end %>
+
+
+<div class="row">
+    <% @jobs.each do |j| %>
+        <%= render partial: "shared/jobs_list",locals:{job:j} %>
+    <% end %>
+</div>
+

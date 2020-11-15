@@ -1,0 +1,102 @@
+/*
+*= require material_icons
+*/
+@import "materialize/components/color-variables";
+$primary-color: #88bdbc !default;
+$secondary-color: #254e58 ;
+$tertiary-color:#112d32 ;
+$quaternary-color:#4f4a41 ;
+$quinary-color: #6e6658 ;
+@import 'materialize';
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    margin-top: auto;
+}
+
+// header
+nav .brand-logo {
+    margin-left: 20px;
+}
+
+
+// jobs/index
+.grid-2-1{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.collapsible a{
+    color: $secondary-color;
+}
+
+
+
+select{
+    display: block;
+}
+.waves-effect{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: $primary-color;
+}
+
+button, input[type=submit],.button{
+    background-color: $secondary-color;
+    padding: 10px;
+    margin: 10px 0px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button > a{
+    color: white;
+
+}
+
+h1 { 
+     font-family: 'Helvetica Neue', sans-serif; 
+      font-weight: bold;
+       letter-spacing: -6px; 
+       line-height: 1; 
+       text-align: center;    
+       color: $quaternary-color;
+}
+.job-data-top span{
+    color: $quinary-color;
+}
+
+.wrap-ifEmpolyer-radio{
+
+}
+[type="radio"]:not(:checked), [type="radio"]:checked {
+    position: relative; 
+    opacity: 1; 
+}
+.error-message{
+    color: $quinary-color;
+    display: block;
+}
+#header-icon{
+    font-size: 40px;
+    transition:transform .8s ease-in-out;
+
+}
+#header-icon:hover{
+    transform: rotate(360deg);
+}
+textarea{
+    min-height: 9rem;
+    min-width: 100%;
+}

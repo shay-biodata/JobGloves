@@ -1,0 +1,39 @@
+<h1><%= @job.title %></h1>
+
+<div class="row">
+    <div class="col s12 l3 job-data-top">
+        <span >Posted <%= time_ago_in_words(@job.created_at) %> ago</span>
+    </div>
+    <div class="col s12 l3 job-data-top">
+        <span>
+            <%= @requests.count%> Applications 
+        </span>
+    </div>
+    <div class="col s12 l6 job-data-top">
+        <span>Employment Type: <%= @job.position.title %> </span>
+    </div>
+</div>
+
+<h6>Company: </h6>
+    <p><%= truncate(@job.user.name,length:15 )%></p>
+<h6>Description:</h6>
+    <p><%= @job.description %> </p>
+<h6>Requiements:</h6>
+    <p><%= @job.requirments %> </p>
+
+<h6>Last Update:</h6>
+    <p><%= time_ago_in_words(@job.updated_at) %> ago<p>
+
+<%if current_user && !current_user_employer?%>    
+        <%if @current_request %>
+            <%= button_to "Delete Application", job_request_path(@job, @current_request), method: :delete%>
+        <%else%>
+            <%= button_to "Apply", job_requests_path(@job)%>
+        <%end%>
+<% end %>
+
+
+<% if current_user_employer? %>
+    <button> <%= link_to "Edit Job",edit_job_path %> </button>
+    <button> <%= link_to "Delete Job",job_path,method: :delete %> </button>
+<% end %>

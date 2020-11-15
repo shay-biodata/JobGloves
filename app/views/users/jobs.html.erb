@@ -1,0 +1,6 @@
+<h1>Your Posts</h1>
+<div class="row">
+    <% @user.jobs.each do |j| %>
+        <%= render partial: "shared/jobs_list",locals:{job:j} %>     
+    <% end %>
+</div>

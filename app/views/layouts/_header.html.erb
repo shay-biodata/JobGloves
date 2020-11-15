@@ -1,0 +1,24 @@
+
+
+
+<nav id="nav">
+  <div class="nav-wrapper">
+
+    <%= link_to root_path ,class:"brand-logo" do %>
+        <i class="large material-icons " id="header-icon">thumbs_up_down</i>
+    <%end%>
+
+
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+    <ul class="right hide-on-med-and-down">
+      <%= render "layouts/header/sessions_buttons"%>
+      
+    </ul>
+
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <%= render "layouts/header/sessions_buttons"%>
+</ul>

@@ -1,0 +1,37 @@
+
+
+<%= form_with(model:user,local:true) do |f|  %>
+    <%= render "shared/errors", object: user %>
+
+    <%= f.label :name%>
+    <%= f.text_field :name, autofocus: true%>
+
+    <%= f.label :email%>
+    <%= f.email_field :email%>
+
+    <%= f.label :password%>
+    <%= f.password_field :password%>
+
+    <%= f.label :password_confirmation, "Confirm Password"%>
+    <%= f.password_field :password_confirmation%>
+
+
+
+
+    <label>Your goal is: </label>
+    <div>
+        <input type="radio" id="not_employer" name="user[employer]" value=false >
+        <label for="not_employer">Find a job</label>
+    </div>
+
+    <div>
+        <input type="radio" id="employer" name="user[employer]" value= true >
+        <label for="employer">Post jobs</label>
+    </div>
+
+
+
+    <%= f.submit %>
+
+
+<% end %>
