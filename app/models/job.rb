@@ -14,6 +14,7 @@ class Job < ApplicationRecord
     validates :title       ,presence:true, length: {minimum:4,maximum: 80}
     validates :description ,length: {minimum:25}
     validates :requirments ,length: {minimum:25}
+    validates :available, inclusion: { in: [true, false] ,message: "Select Availability"}
 
 
 end

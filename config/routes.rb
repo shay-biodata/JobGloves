@@ -1,8 +1,8 @@
 Rails.application.routes.draw do 
+  resources :histories
   resources :requests
   root "jobs#index"
   get "signup" => "users#new"
-  
 
 
   resources :users 

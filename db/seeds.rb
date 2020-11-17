@@ -1,3 +1,16 @@
+RequestStatus.create!([
+    {
+        title:"approved"
+    },
+    {
+        title:"declined"
+    },
+    {
+        title:"pending"
+    },
+])
+
+
 Position.create!([
     {
         title: "full-time"

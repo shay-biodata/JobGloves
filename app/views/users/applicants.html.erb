@@ -13,9 +13,9 @@
                         <div class="right grid-2-1">
 
                             <div>
-                            <%= link_to request.user, class:"card-title" do %>
-                                <span class="card-title"><%= request.user.name%></span>
-                            <%end%>
+                                <%= link_to request.user, class:"card-title" do %>
+                                    <span class="card-title"><%= request.user.name%></span>
+                                <%end%>
                             </div>
                             
                             <div>
@@ -26,11 +26,14 @@
                     </div>
 
                     <div class="collapsible-body">
-                        <div>3 applicants</div>
-                        <span>.</span>
+                        <%= button_to "status", set_status_request(request,1)%>
                     </div>
             </li>
         </ul>
 
     <% end %>
 </div>
+
+
+
+

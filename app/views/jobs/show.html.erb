@@ -1,17 +1,33 @@
 <h1><%= @job.title %></h1>
 
 <div class="row">
+
     <div class="col s12 l3 job-data-top">
         <span >Posted <%= time_ago_in_words(@job.created_at) %> ago</span>
     </div>
+
     <div class="col s12 l3 job-data-top">
         <span>
             <%= @requests.count%> Applications 
         </span>
     </div>
-    <div class="col s12 l6 job-data-top">
+
+    <div class="col s12 l3 job-data-top">
         <span>Employment Type: <%= @job.position.title %> </span>
     </div>
+
+    <div class="col s12 l3 job-data-top">
+        <%if @job.occupied_by_id && !(@job.available)%>
+        <span>
+            Occupied Position By <%= link_to @occupied_by.name, @occupied_by %>
+        </span>
+        <%elsif !(@job.occupied_by_id) && !(@job.available)%>
+            <span> The Job No Longer Available </span>
+        <%else%>
+            <span>Open Position </span>
+        <% end %>  
+    </div>
+
 </div>
 
 <h6>Company: </h6>
@@ -33,7 +49,9 @@
 <% end %>
 
 
-<% if current_user_employer? %>
+<% if @job.user == current_user && current_user && current_user_employer? %>
     <button> <%= link_to "Edit Job",edit_job_path %> </button>
     <button> <%= link_to "Delete Job",job_path,method: :delete %> </button>
 <% end %>
+
+

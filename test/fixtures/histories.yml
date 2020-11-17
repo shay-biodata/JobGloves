@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  controller: MyString
+  action: MyString
+  path: MyString
+  object_deleted: false
+  object_changed_description: MyString
+
+two:
+  user: 
+  controller: MyString
+  action: MyString
+  path: MyString
+  object_deleted: false
+  object_changed_description: MyString

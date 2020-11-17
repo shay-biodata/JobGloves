@@ -4,7 +4,7 @@
 
   
   <ul class="collection">
-      <%if @user.employer %>
+      <%if @user.employer && current_user?(@user)%>
           <%= link_to user_url(:page => 'jobs')	,class:"collection-item" do %>
             <div class="grid-2-1">
                 <div class="left">
@@ -22,7 +22,7 @@
           <%end%>
       <%end%>
 
-    <%if @user.employer %>
+    <%if @user.employer && current_user?(@user)%>
         <%= link_to user_url(:page => 'applicants')	,class:"collection-item" do %>
           <div class="grid-2-1">
               <div class="left">
@@ -33,7 +33,11 @@
                       <%=@requests.count %> Applicants
                   </div>
                   <div>
-                      .
+                  
+                  Approved <%= requests_by_status(@requests,1).count %> 
+                  Declined <%= requests_by_status(@requests,2).count %> 
+                  Pending <%= requests_by_status(@requests,3).count %> 
+                  
                   </div>
               </div>
           </div>

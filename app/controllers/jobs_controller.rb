@@ -1,10 +1,14 @@
 class JobsController < ApplicationController
 
-    before_action :require_signin, except: [:index, :show]
-    before_action :require_employer, except: [:index, :show]
-
     before_action :set_job, except: [:index, :new,:create]
     before_action :set_positions, only:[:edit, :update,:new,:create]
+
+    before_action :require_signin, except: [:index, :show]
+    before_action :require_employer, except: [:index, :show]
+    before_action except: [:index, :show]  do
+        require_user_to_current_job(@job)
+    end
+    
 
     def index
         @jobs = Job.order(created_at: :desc)
@@ -13,6 +17,7 @@ class JobsController < ApplicationController
     def show
         @position = @job.position
         @requests = @job.requests
+        @job.occupied_by_id? ? @occupied_by = User.find(@job.occupied_by_id) : @occupied_by=false
         if current_user
             @current_request = current_user.requests.find_by(job_id: @job.id)
         end
@@ -20,10 +25,23 @@ class JobsController < ApplicationController
 
 
     def edit
+        @users = User.where(employer:false)
     end
 
     def update
-        @job.position_id = params[:job][:position]
+        puts "!!!!!!!! ! ! !#### #{params}"
+        @job.position_id    = params[:job][:position]
+        @job.occupied_by_id = params[:job][:occupied_by]
+
+# if the user click available=true => available=true && occupied_by_id=nil
+        
+        if @job.occupied_by_id && [:job][:available] == false
+            @job.available = false
+        elsif params[:job][:available] == "true"
+            @job.occupied_by_id = nil
+        end
+
+
         if @job.update(job_params)
             redirect_to @job, notice:"Job successfully update"
         else
@@ -56,11 +74,13 @@ class JobsController < ApplicationController
     end
 
 
+
+
     private
 
     def job_params
         params.require(:job).
-        permit(:title, :description, :requirments,:position_id)
+        permit(:title, :description, :requirments,:position_id,:available)
     end
 
     def set_job
