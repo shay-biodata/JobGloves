@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+     
+    after_action :create_history
 
     private
 
@@ -53,5 +55,22 @@ class ApplicationController < ActionController::Base
 
     helper_method :requests_by_status
 
+    def create_history()
+        if current_user
+            current_url = request.original_url 
+            History.create!( user_id:current_user.id , controller: params[:controller] , action: params[:action] , path:current_url)
+        end
+    end
+
+    def current_employer_equal_to_request(job, redirect= false)
+        @res ||= job.user == current_user
+        if !@res && redirect
+            redirect_to user_url(:page => 'applicants'),alert: "Employer access only!"
+        else
+            @res
+        end
+    end
+
+    helper_method :current_employer_equal_to_request
 
 end

@@ -13,9 +13,13 @@
 # VIEW
 1) hamburger hedaer not working well , just after refresh (check the problem )
 
-# Liron Comments for improvement: 
-.) Change the query in users/show to rails convantion.
+# --- Liron Comments for improvement: --- 
+
+# Users
+.) Refactoring the query in users/show to rails convantion.
+
+# occupied by
 .) Refactoring :occupied_by in  all: view/controller/model and query in show page
-.) when update the job , the occupied by change to nill auto when click update
-.) fix the conditions in jobs controller #update (objective_1: when click on available=true shpwld remove the occupied id. objective_2: when click on occupide_uder= "rony" change the available to false )
-.)request status: complite the (change status(by the employer(a,d,p)),add into the view and add methode for that)
+
+# Request Status
+.)Refactoring request_status

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "users/:id/applicants" => "users#show",:defaults => { :page => 'applicants' }
 
   resources :jobs do
-    resources :requests, only:[:create,:destroy]
+    resources :requests
   end
   
 

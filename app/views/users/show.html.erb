@@ -2,7 +2,6 @@
 
   <h1><%= @user.name %></h1>
 
-  
   <ul class="collection">
       <%if @user.employer && current_user?(@user)%>
           <%= link_to user_url(:page => 'jobs')	,class:"collection-item" do %>
@@ -11,7 +10,7 @@
                   Your Posts
                 </div>
                 <div class="right grid-2-1">
-                    <div>
+                    <div >
                         <%=@user.jobs.count %> Posts
                     </div>
                     <div>
@@ -28,15 +27,23 @@
               <div class="left">
                 Applicants
               </div>
-              <div class="right grid-2-1">
-                  <div>
+              <div class="right ">
+                  <div class="request-numbers">
                       <%=@requests.count %> Applicants
                   </div>
                   <div>
+
+                  <div class="request-numbers color-approved"  >
+                      <%= requests_by_status(@requests,1).count %> Approved
+                  </div>
+
+                  <div   class="request-numbers color-declined">
+                      <%= requests_by_status(@requests,2).count %> Declined
+                  </div>
                   
-                  Approved <%= requests_by_status(@requests,1).count %> 
-                  Declined <%= requests_by_status(@requests,2).count %> 
-                  Pending <%= requests_by_status(@requests,3).count %> 
+                  <div    class="request-numbers color-pending">
+                      <%= requests_by_status(@requests,3).count %> Pending
+                  </div>
                   
                   </div>
               </div>
@@ -66,7 +73,6 @@
 <p><%= @user.email %></p>
 
 <% if current_user?(@user) %>
-
   <div class="actions">
     <%= link_to "Edit Account",edit_user_path	,class:"button edit"  %>
     <%= link_to "Delete Account", @user , method: :delete, data: {confirm: "Permanently delete your account!?"},class:"button delete" %>

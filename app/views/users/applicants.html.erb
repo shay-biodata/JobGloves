@@ -1,32 +1,50 @@
 <h1>Applicants</h1>
 <div class="row">
     <% @requests.each do |request| %>
-        
         <ul class="collapsible">
             <li>
-                    <div class="collapsible-header grid-2-1"> 
-                        <div class="left">
+                <div class="collapsible-header grid-2-1"> 
+                    <div class="left">
                         <%= link_to request.job, class:"card-title" do %>
-                            <span class="card-title"><%= truncate(request.job.title,length:60) %></span>
+                            <span class="card-title"> <%= truncate(request.job.title,length:60) %> </span>
                         <%end%>
-                        </div>
-                        <div class="right grid-2-1">
-
-                            <div>
-                                <%= link_to request.user, class:"card-title" do %>
-                                    <span class="card-title"><%= request.user.name%></span>
-                                <%end%>
-                            </div>
-                            
-                            <div>
-                                <%= time_ago_in_words(request.created_at) %> ago
-                            </div>
-
-                        </div>
                     </div>
+                    <div class="right grid-2-1">
+
+                        <div>
+                            <%= link_to request.user, class:"card-title" do %>
+                                <span class="card-title"><%= request.user.name%></span>
+                            <%end%>
+                        </div>
+                        
+                        <div>
+                            <% if request.request_status.title == "approved"%>
+                                    <span id="approved-status" class="request-status">
+                                        <%= request.request_status.title %>
+                                    </span>
+                            <%elsif request.request_status.title == "declined"%>
+                                <span id="declined-status" class="request-status">
+                                    <%= request.request_status.title %>
+                                </span>
+                            <%else%>
+                                <span id="pending-status" class="request-status">
+                                    <%= request.request_status.title %>
+                                </span>
+                            <%end%>
+                        </div>
+
+                    </div>
+                </div>
+
 
                     <div class="collapsible-body">
-                        <%= button_to "status", set_status_request(request,1)%>
+                        <%if current_employer_equal_to_request(request.job) %>
+                            <div class= "wrap-status-buttons">
+                                <%= button_to "Approved",{:controller=> "requests",:action=> "update",:job_id => request.job, :request_id => request,:status_id=>1}, id:"approved-status" ,class:"button-status", method: :put	%>
+                                <%= button_to "Declined",{:controller=> "requests",:action=> "update",:job_id => request.job, :request_id => request,:status_id=>2} ,id:"declined-status",class:"button-status", method: :put	%>
+                            </div>
+                        <%end%>
+
                     </div>
             </li>
         </ul>

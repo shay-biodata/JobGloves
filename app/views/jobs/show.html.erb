@@ -49,9 +49,10 @@
 <% end %>
 
 
-<% if @job.user == current_user && current_user && current_user_employer? %>
+<% if @job.user == current_user %>
     <button> <%= link_to "Edit Job",edit_job_path %> </button>
-    <button> <%= link_to "Delete Job",job_path,method: :delete %> </button>
+    <button> <%= link_to "Delete Job",job_path,method: :delete ,data: {confirm: "Permanently delete your Post!?"}%> </button>
+    
 <% end %>
 
 

@@ -1,7 +1,5 @@
 <%= form_with(model: @job,local:true) do |f|%>
-
     <%= render "shared/errors", object: job %>
-
     <p>
         <%= f.label :title %>
         <%= f.text_field :title, autofocus:true%>
@@ -14,34 +12,31 @@
         <%=  f.label :requirments%>
         <%=  f.text_area :requirments%>
     </p>
-
     <div>
         <%=  f.label "Employment Type"%>
         <%= f.collection_select(:position_id, @positions, :id, :title) %>
     </div>
 
-
-<div>
-    <label>Open Position? </label>
-
+<%if job.id %>
     <div>
-        <input type="radio" id="available" name="job[available]" value= true , <%= job.available? ? "checked=true" :""%> >
-        <label for="available">True</label>
+        <label>Open Position? </label>
+
+        <div>
+            <input type="radio" id="available" name="job[available]" value= true , <%= job.available? ? "checked=true" :""%> >
+            <label for="available">True</label>
+        </div>
+
+        <div>
+            <input  type="radio" id="not_available" name="job[available]" value= false , <%= !job.available? ? "checked=true" :""%> >
+            <label for="not_available" >False
+        </div>
+
+        <div>
+            <%=  f.label "Help us Know your company better by clicking on The User Occupied the job: "%>
+            <%=  f.collection_select(:occupied_by, @users, :id, :name,:include_blank=> "Its not your business / The Job No Longer Available", prompt:"Please select the user Occupied The job" ,:selected => job.occupied_by_id )%>
+        </div>
     </div>
-
-    <div>
-        <input  type="radio" id="not_available" name="job[available]" value= false , <%= !job.available? ? "checked=true" :""%> >
-        <label for="not_available" >False
-    </div>
-
-    <div>
-        <%=  f.label "Help us Know your company better by clicking on The User Occupied the job: "%>
-        <%=  f.collection_select(:occupied_by, @users, :id, :name, prompt:"Please select the user Occupied The job" ,:selected => job.occupied_by_id )%>
-
-    </div>
-
-</div>
-
+<%end%>
 
     <div>
         <%= f.submit%>

@@ -9,9 +9,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        
-        @user.employer? ? @requests = Request.joins("INNER JOIN jobs ON jobs.id = requests.job_id AND jobs.user_id = #{@user.id} ") : @requests = Request.where(:user_id => @user) 
-        # @user.employer? ? @requests = Request.where(:employer_id => @user) : @requests = Request.where(:user_id => @user) 
+        @user.employer? ? @requests = Request.joins(:job).where("jobs.user_id = #{@user.id}") : @requests = Request.where(:user_id => @user) 
         case params[:page]
         when "jobs"
             if @user.employer?

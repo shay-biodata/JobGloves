@@ -7,6 +7,9 @@ $secondary-color: #254e58 ;
 $tertiary-color:#112d32 ;
 $quaternary-color:#4f4a41 ;
 $quinary-color: #6e6658 ;
+$green-color: #76c6a0 ;
+$red-color: #d36148 ;
+
 @import 'materialize';
 
 *{
@@ -77,9 +80,6 @@ h1 {
     color: $quinary-color;
 }
 
-.wrap-ifEmpolyer-radio{
-
-}
 [type="radio"]:not(:checked), [type="radio"]:checked {
     position: relative; 
     opacity: 1; 
@@ -99,4 +99,40 @@ h1 {
 textarea{
     min-height: 9rem;
     min-width: 100%;
+}
+
+.wrap-status-buttons{
+    display: flex;
+}
+
+#approved-status{
+    margin: 0px 5px;
+    background-color: $green-color;
+}
+#declined-status{
+    margin: 0px 5px;
+    background-color: $red-color;
+}
+#pending-status{
+    background-color: $quinary-color;
+}
+.request-status{
+    padding:10px;
+    color: white;
+    border-radius: 5px;
+}
+.request-numbers{
+    padding-bottom:10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    
+}
+.color-approved{
+    color: $green-color;
+}
+.color-declined{
+    color: $red-color;
+}
+.color-pending{
+    color: $quinary-color;
 }

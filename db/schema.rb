@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_065956) do
+ActiveRecord::Schema.define(version: 2020_11_17_073840) do
 
   create_table "histories", force: :cascade do |t|
     t.integer "user_id"
     t.string "controller"
     t.string "action"
     t.string "path"
-    t.boolean "object_deleted", default: false
-    t.string "object_changed_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_histories_on_user_id"
